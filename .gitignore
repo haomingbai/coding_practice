@@ -2,5 +2,8 @@
 
 !.gitignore
 !*.cpp
+!*.h
+!*.c
+!*.hpp
 !*.md
 test.cpp
