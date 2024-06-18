@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 int main() {
-	int* storage = malloc(sizeof(int) * 100), *flag = malloc(sizeof(int) * 101),calc = 0;
+	int* storage = (int*)malloc(sizeof(int) * 100), *flag = (int*)malloc(sizeof(int) * 101),calc = 0;
 	for(int i = 2; i <= 100; i++) {
 		if(flag[i] == 0) {
 			storage[calc++] = i;
