@@ -1,69 +1,61 @@
 /*************************************************************************
-    > File Name: P1042.cpp
-    > Author: Haoming Bai
-    > Mail: haomingbai@hotmail.com 
-    > Created Time: 2024年01月28日 星期日 16时17分30秒
+	> File Name: P1042.cpp
+	> Author: Haoming Bai
+	> Mail: haomingbai@hotmail.com
+	> Created Time: 2024年01月28日 星期日 16时17分30秒
  ************************************************************************/
 
-#include <cstdlib>
-#include<iostream>
-#include <string>
+#include <cstdio>
+#include <list>
 #include <utility>
-#include <vector>
 using namespace std;
 
-void calculate_11(string,vector<pair<int,int>>&);
-void calculate_21(string,vector<pair<int,int>>&);
-
-int main(){
-	vector<pair<int,int>> res_11,res_21;
-	res_11.push_back({0,0});
-	res_21.push_back({0,0});
-	string x="A";
-	while(x.back()!='E'){
-		cin>>x;
-		calculate_11(x,res_11);
-		calculate_21(x,res_21);
+int main()
+{
+	list<pair<long long, long long>> sto_11, sto_21;
+	char fetch;
+	fetch = getchar();
+	if (fetch == 'E') {
+		printf("0:0\n\n0:0\n");
+		return 0;
 	}
-	for(auto it:res_11){
-		cout<<it.first<<':'<<it.second<<endl;
+	sto_11.push_back({ 0, 0 });
+	sto_21.push_back({ 0, 0 });
+	if (fetch == 'W') {
+		sto_11.back().first++;
+		sto_21.back().first++;
+	} else if (fetch == 'L') {
+		sto_11.back().second++;
+		sto_21.back().second++;
 	}
-	cout<<endl;
-	for(auto it:res_21){
-		cout<<it.first<<':'<<it.second<<endl;
-	}
-}
-
-void calculate_11(string str,vector<pair<int,int>>& res){
-	if(str.back()=='E')
-		str.pop_back();
-	for(auto it:str){
-		if(
-				(res.back().first>=11||res.back().second>=11)
-				&&abs(res.back().first-res.back().second)>=2
-		  ){
-			res.push_back({0,0});
+	while (fetch != 'E') {
+		fetch = getchar();
+		if (fetch == 'W') {
+			sto_11.back().first++;
+			sto_21.back().first++;
+			if ((sto_11.back().first >= 11) && (sto_11.back().first - sto_11.back().second >= 2)) {
+				sto_11.push_back({ 0, 0 });
+			}
+			if ((sto_21.back().first >= 21) && (sto_21.back().first - sto_21.back().second >= 2)) {
+				sto_21.push_back({ 0, 0 });
+			}
+		} else if (fetch == 'L') {
+			sto_11.back().second++;
+			sto_21.back().second++;
+			if ((sto_11.back().second >= 11) && (sto_11.back().first - sto_11.back().second <= -2)) {
+				sto_11.push_back({ 0, 0 });
+			}
+			if ((sto_21.back().second >= 21) && (sto_21.back().first - sto_21.back().second <= -2)) {
+				sto_21.push_back({ 0, 0 });
+			}
 		}
-		if(it=='W')
-			res.back().first++;
-		else
-			res.back().second++;
 	}
-}
-
-void calculate_21(string str,vector<pair<int,int>>& res){
-	if(str.back()=='E')
-		str.pop_back();
-	for(auto it:str){
-		if(
-				(res.back().first>=21||res.back().second>=21)
-				&&abs(res.back().first-res.back().second)>=2
-		  ){
-			res.push_back({0,0});
-		}
-		if(it=='W')
-			res.back().first++;
-		else
-			res.back().second++;
+	for (auto it : sto_11) {
+		printf("%lld:%lld\n", it.first, it.second);
 	}
+	printf("\n");
+	for (auto it : sto_21) {
+		printf("%lld:%lld\n", it.first, it.second);
+	}
+	return 0;
 }
