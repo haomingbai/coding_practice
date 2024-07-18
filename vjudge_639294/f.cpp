@@ -42,11 +42,39 @@ vector<long long> prime_k;
 
 map<long long, int> prime_p;
 
-void dfs ();
+void dfs()
+{
+	long long p_new;
+}
 
 int main()
 {
     init();
     long long p, x, k;
-    // cin >> p >> x >> k;
+    cin >> p >> x >> k;
+    prime_k.reserve(1000000);
+    // Fractionalize p
+    for (int i = 0; i < prime_list.size() && p > prime_list.at(i) * prime_list.at(i) && p > 1; i++)
+    {
+        if (p % prime_list.at(i) == 0)
+        {
+            prime_p.at(prime_list.at(i)) = 0;
+            while (p % prime_list.at(i) == 0)
+            {
+                p /= prime_list.at(i);
+                prime_p.at(prime_list.at(i))++;
+            }
+        }
+    }
+    for (int i = 0; i < prime_list.size() && k > prime_list.at(i) * prime_list.at(i) && p > 1; i++)
+    {
+        if (k % prime_list.at(i) == 0)
+        {
+            prime_k.push_back(prime_list.at(i));
+            while (k % prime_list.at(i) == 0)
+            {
+                k /= prime_list.at(i);
+            }
+        }
+    }
 }
