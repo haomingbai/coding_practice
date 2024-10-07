@@ -7,3 +7,4 @@
 !*.hpp
 !*.md
 test.cpp
+!*/
