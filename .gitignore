@@ -6,5 +6,6 @@
 !*.c
 !*.hpp
 !*.md
+!*.py
 test.cpp
 !*/
