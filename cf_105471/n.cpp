@@ -10,7 +10,14 @@
  * @details
  */
 
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <array>
+#include <cstdlib>
+#include <functional>
+#include <iostream>
+#include <ostream>
+#include <string>
+
 using namespace std;
 
 using ll = long long;
@@ -37,7 +44,7 @@ ll CalculateInnerLoop(ll start, ll stop, ll step) {
   return result;
 }
 
-ll Solve(std::array<std::string, 5> &code) {
+ll Solve(std::array<std::string, 5>& code) {
   auto init_ans_str = code[0].substr(4);
   ll init_ans = atoll(init_ans_str.c_str());
   ll ans = init_ans;
@@ -58,11 +65,11 @@ ll Solve(std::array<std::string, 5> &code) {
 
     LoopRange() noexcept = default;
 
-    LoopRange(LoopRange &&) noexcept = default;
-    LoopRange(const LoopRange &) = default;
+    LoopRange(LoopRange&&) noexcept = default;
+    LoopRange(const LoopRange&) = default;
 
-    LoopRange &operator=(LoopRange &&) noexcept = default;
-    LoopRange &operator=(const LoopRange &) = default;
+    LoopRange& operator=(LoopRange&&) noexcept = default;
+    LoopRange& operator=(const LoopRange&) = default;
 
     LoopRange(ll stop) : start(0), stop(stop), step(1) {}
     LoopRange(ll start, ll stop) : start(start), stop(stop), step(1) {}
@@ -352,7 +359,7 @@ ll Solve(std::array<std::string, 5> &code) {
 
 int main(void) {
   std::array<std::string, 5> code;
-  for (auto &it : code) {
+  for (auto& it : code) {
     getline(cin, it);
   }
   cout << Solve(code) << endl;
